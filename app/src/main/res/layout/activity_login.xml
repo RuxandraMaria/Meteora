@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#EAEDED"
+    tools:context="com.example.android.meteora.Login">
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="110dp"
+        android:layout_marginBottom="30dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/logonasa" />
+
+    <EditText
+        android:id="@+id/username_view"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:textColor="#2E4053"
+        android:textColorHint="#2E4053"
+        android:gravity="center"
+        android:layout_marginLeft="80dp"
+        android:paddingTop="20dp"
+        android:inputType="text"
+        android:backgroundTint="#1A237E"
+        android:paddingBottom="20dp"
+        android:paddingLeft="40dp"
+        android:maxLines="1"
+        android:paddingRight="40dp"
+        android:hint="USERNAME" />
+
+    <EditText
+        android:id="@+id/password_view"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:textColor="#2E4053"
+        android:textColorHint="#2E4053"
+        android:layout_marginLeft="80dp"
+        android:layout_marginBottom="80dp"
+        android:paddingTop="20dp"
+        android:gravity="center"
+        android:paddingBottom="20dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:inputType="textPassword"
+        android:backgroundTint="#1A237E"
+        android:hint="PASSWORD" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+    <Button
+        android:id="@+id/login"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:background="#283593"
+        android:layout_marginLeft="50dp"
+        android:textColor="@android:color/white"
+        android:text="@string/login" />
+
+    <Button
+        android:id="@+id/exit"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:background="#283593"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:textColor="@android:color/white"
+        android:text="@string/exit" />
+    </LinearLayout>
+</LinearLayout>

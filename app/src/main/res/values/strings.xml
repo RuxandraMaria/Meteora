@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Meteora</string>
+    <string name="wrong_password">Password is incorrect</string>
+    <string name="wrong_username">Username is incorrect</string>
+    <string name="login">LOGIN</string>
+    <string name="exit">EXIT</string>
+</resources>
