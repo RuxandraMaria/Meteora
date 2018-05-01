@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.android.meteora.Settings">
+
+    <TextView
+        android:id="@+id/change_photo"
+        style="@style/CategoryStyle"
+        android:background="#5A6EF7"
+        android:text="Change profile picture" />
+
+    <TextView
+        android:id="@+id/change_password"
+        style="@style/CategoryStyle"
+        android:background="#677AF8"
+        android:text="Change password" />
+
+    <TextView
+        android:id="@+id/change_status"
+        style="@style/CategoryStyle"
+        android:background="#8695F8"
+        android:text="Change status" />
+</LinearLayout>

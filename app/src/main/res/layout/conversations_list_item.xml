@@ -9,6 +9,7 @@
         android:id="@+id/avatar_image_view"
         android:layout_width="60dp"
         android:layout_height="60dp"
+        android:padding="2dp"
         android:src="@drawable/photo" />
 
     <LinearLayout
@@ -22,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
-            android:paddingTop="10dp"
+            android:paddingTop="5dp"
             android:textColor="#2E4053"
             android:textSize="20sp"
             tools:text="Other user name" />
@@ -32,7 +33,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
-            android:paddingBottom="10dp"
             android:textColor="#546E7A"
             android:textSize="16sp"
             tools:text="Offline" />
