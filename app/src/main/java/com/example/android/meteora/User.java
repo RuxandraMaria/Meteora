@@ -2,29 +2,46 @@ package com.example.android.meteora;
 
 import android.widget.ImageView;
 
+import java.util.ArrayList;
+
 public class User {
     private static int IDcounter;
     private int ID;
     private String userName;
     private String password;
+    private String nickName;
     private int userType;
     private int isActive;
-    private ImageView avatar;
+    private ArrayList<Conversation> conversations;
+    private int imageResourceID = HAS_NO_IMAGE;
+    public static final int HAS_NO_IMAGE = -1;
 
-    public User(String userName, String password, int userType, ImageView avatar) {
+    public User(String userName, String password, int userType) {
         this.userName = userName;
         this.password = password;
         this.userType = userType; //1-coordonator 2-astronaut
         this.isActive = 0;
-        this.avatar = avatar;
+        this.nickName = "";
         this.ID = IDcounter++;
+        this.conversations = new ArrayList<Conversation>();
+    }
+
+    public User(String userName, String password, int userType, int imageResourceID) {
+        this.userName = userName;
+        this.password = password;
+        this.userType = userType; //1-coordonator 2-astronaut
+        this.isActive = 0;
+        this.imageResourceID = imageResourceID;
+        this.ID = IDcounter++;
+        this.nickName = "";
+        this.conversations = new ArrayList<Conversation>();
     }
 
     public String getUserName() {
         return userName;
     }
 
-    public ImageView getAvatar() { return avatar;}
+    public int getImageResourceID() { return imageResourceID;}
 
     public String getPassword() {
         return password;
@@ -52,8 +69,23 @@ public class User {
     public void setUserType(int userType) {
         this.userType = userType;
     }
-    public void setAvatar(ImageView avatar) {
-        this.avatar = avatar;
+    public void setNickName(String nickName) { this.nickName = nickName;}
+    public String getNickName(){ return nickName;}
+    public void setImageResourceID(int imageResourceID) {
+        this.imageResourceID = imageResourceID;
+    }
+
+    public boolean hasImage() {
+        return imageResourceID != HAS_NO_IMAGE;
+    }
+
+    public void addConversation(String username) {
+        if(DataBase.getInstance().getUser(username) != null)
+            conversations.add(new Conversation(this, DataBase.getInstance().getUser(username)));
+    }
+
+    public  ArrayList<Conversation> getConversations() {
+        return conversations;
     }
 
 }

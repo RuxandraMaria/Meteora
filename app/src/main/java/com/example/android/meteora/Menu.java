@@ -3,6 +3,7 @@ package com.example.android.meteora;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
@@ -25,74 +26,42 @@ public class Menu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        ImageView image = new ImageView(this);
-        image.setImageResource(R.drawable.photo);
-        User test = new User("Cristina", "parolacristina", 2, image);
-        DataBase.getInstance().getUsers().add(test);
-        Conversation conv = new Conversation(DataBase.getInstance().getUsers().get(0), test);
-        conversations.add(conv);
-        conversations.add(conv);
-        ConversationAdapter itemsAdapter = new ConversationAdapter(this, conversations);
+        conversations.addAll(DataBase.getInstance().getWhoIsLoggedNow().getConversations());
+        ConversationAdapter itemsAdapter = new ConversationAdapter(this, conversations, R.color.color_conversation);
         ListView listView = (ListView) findViewById(R.id.list);
         listView.setAdapter(itemsAdapter);
-
-        spinner = (Spinner) findViewById(R.id.spinner);
-        list.add("New conv");
-        list.add("New Conversation");
-        list.add("Settings");
-        list.add("Help");
-        list.add("Logout");
-        final EmptyFirstItemAdapter dataAdapter = new EmptyFirstItemAdapter(this, list);
-        dataAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
-        spinner.setAdapter(dataAdapter);
-        spinner.setSelection(0);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            private boolean mInitialized = false;
-
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-            }
-
-            @Override
-            public void onItemSelected(AdapterView<?> arg0, View view,
-                                       int position, long id) {
-                final Intent intent;
-                if (!mInitialized && position == 0 && id == 1) {
-                    // User selected the 1st item after the 'empty' item was initially removed,
-                    // update the data set to compensate for the removed item.
-                    mInitialized = true;
-                    dataAdapter.notifyDataSetChanged();
-                } else if (mInitialized){
-                    switch (position) {
-                        case 0:
-                            intent = new Intent(Menu.this, NewConversation.class);
-                            startActivity(intent);
-                            break;
-                        case 1:
-                            intent = new Intent(Menu.this, Settings.class);
-                            startActivity(intent);
-                            break;
-                        case 2:
-                            intent = new Intent(Menu.this, Help.class);
-                            startActivity(intent);
-                            break;
-                        case 3:
-                            finish();
-                            System.exit(0);
-                            break;
-                        default:
-                            break;
-                    }
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> arg0) {
-                // TODO Auto-generated method stub
-            }
-
-        });
-
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(android.view.Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        final Intent intent;
+        switch(id) {
+            case R.id.settings:
+                intent = new Intent(Menu.this, Settings.class);
+                startActivity(intent);
+                break;
+            case R.id.help:
+                intent = new Intent(Menu.this, Help.class);
+                startActivity(intent);
+                break;
+            case R.id.new_conv:
+                intent = new Intent(Menu.this, ConversationScreen.class);
+                startActivity(intent);
+                break;
+            case R.id.logout:
+                finish();
+                System.exit(0);
+                break;
+            default:
+                break;
+        }
+        return true;
+    }
 }

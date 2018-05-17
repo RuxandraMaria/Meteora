@@ -4,4 +4,36 @@
     <string name="wrong_username">Username is incorrect</string>
     <string name="login">LOGIN</string>
     <string name="exit">EXIT</string>
+    <string name="title_activity_scrolling">ScrollingActivity</string>
+    <string name="large_text">
+        "\nIf this description will not answer your question, contact us via email: the button in the right will redirect you.\n\n"
+
+        "LOGIN\n"
+        "Open the application. The authentification credentials are the ones given from the coordinating"
+        "team from Earth - the username is the unique id given at the beginning of the mission. In "
+        "case of login problems or forgetting the login data, please contact the coordinating center "
+        "manually from the spaceship. \n\n"
+
+        "START CONVERSATION\n"
+        "If you want to start a new conversation the three dot menu from the right-upper corner will"
+        "redirect you to a list of persons including the team members from spaceship, the coordination team "
+        "from Earth responsible for the mission and other people directly involved in the mission. "
+        "When you choose a person from the list a new conversation screen will appear.\n"
+        "If you already started a conversation with a person you can search and reopen it using the "
+        "search menu bar. Type the username of the person you want to chat with, like "Mona" or search"
+        "by date like 12.02.2017(DD.MM.YYYY).\n\n"
+
+        "CHANGE PASSWORD\n"
+        "Change password submenu can be accessed from the three-dot menu option "Setttings". In order to get "
+        "your password changed retype twice the actual password and enter the new password twice. The password "
+        "must contain at least 10 characters including 2 digits. \n\n"
+    </string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_test">Test</string>
+    <string name="title_activity_help">Help</string>
+    <string name="title_activity_change_password">ChangePassword</string>
+    <string name="old_not_the_same">The old passwords are not the same</string>
+    <string name="new_not_the_same">The new passwords are not the same</string>
+    <string name="pass_changed">Password changed!</string>
+    <string name="input_placeholder">Write a message</string>
 </resources>

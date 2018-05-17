@@ -3,19 +3,22 @@ package com.example.android.meteora;
 import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 public class ConversationAdapter extends ArrayAdapter<Conversation> {
-
-    public ConversationAdapter(Activity context, ArrayList<Conversation> conversations) {
+    int colorId;
+    public ConversationAdapter(Activity context, ArrayList<Conversation> conversations, int colorId) {
         super(context,0, conversations);
+        this.colorId = colorId;
     }
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -35,9 +38,13 @@ public class ConversationAdapter extends ArrayAdapter<Conversation> {
         else
             active.setText("Online");
 
-        ImageView avatar = (ImageView) listItemView.findViewById(R.id.avatar_image_view);
-        avatar.setImageDrawable(currentConversation.getUser2().getAvatar().getDrawable());
+        LinearLayout ly = (LinearLayout) listItemView.findViewById(R.id.text_container);
+        ly.setBackgroundColor(ContextCompat.getColor(getContext(), colorId));
 
+        ImageView iconView = (ImageView) listItemView.findViewById(R.id.avatar_image_view);
+        if (currentConversation.getUser2().hasImage()) {
+            iconView.setImageResource(currentConversation.getUser2().getImageResourceID());
+        }
         return listItemView;
 
     }
