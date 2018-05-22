@@ -23,14 +23,14 @@ public class Help extends AppCompatActivity {
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
         fab.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent Email = new Intent(Intent.ACTION_SEND);
-                    Email.setType("text/email");
-                    Email.putExtra(Intent.EXTRA_EMAIL,
-                            new String[]{"it.department@nasa.com"});
-                    startActivity(Intent.createChooser(Email, "Choose an email application:"));
-                }
+            @Override
+            public void onClick(View view) {
+                Intent Email = new Intent(Intent.ACTION_SEND);
+                Email.setType("text/email");
+                Email.putExtra(Intent.EXTRA_EMAIL,
+                        new String[]{"it.department@nasa.com"});
+                startActivity(Intent.createChooser(Email, "Choose an email application:"));
+            }
         });
     }
     public boolean onOptionsItemSelected(MenuItem item) {

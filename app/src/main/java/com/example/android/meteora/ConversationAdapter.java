@@ -13,13 +13,22 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class ConversationAdapter extends ArrayAdapter<Conversation> {
     int colorId;
+    ArrayList<Conversation> conversations = new ArrayList<>();
+    ArrayList<Conversation> aux;
     public ConversationAdapter(Activity context, ArrayList<Conversation> conversations, int colorId) {
         super(context,0, conversations);
         this.colorId = colorId;
+        this.conversations = conversations;
+        this.aux = new ArrayList<>();
+        aux.addAll(conversations);
     }
+
+
+
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View listItemView = convertView;
@@ -48,4 +57,21 @@ public class ConversationAdapter extends ArrayAdapter<Conversation> {
         return listItemView;
 
     }
+
+    public void filter(String charText) {
+        charText = charText.toLowerCase(Locale.getDefault());
+        conversations.clear();
+        if (charText.length() == 0) {
+            conversations.addAll(aux);
+        } else {
+            for (Conversation conv : aux) {
+                if (conv.getUser2().getUserName().toLowerCase(Locale.getDefault()).contains(charText)) {
+                    conversations.add(conv);
+                }
+            }
+        }
+        notifyDataSetChanged();
+    }
+
+
 }

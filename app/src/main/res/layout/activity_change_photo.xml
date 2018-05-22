@@ -15,6 +15,7 @@
 
     <TextView
         android:layout_width="match_parent"
+        android:id="@+id/username"
         android:layout_height="wrap_content"
         android:layout_margin="6dp"
         android:paddingBottom="8dp"
@@ -22,11 +23,11 @@
         android:paddingRight="6dp"
         android:textSize="16sp"
         android:gravity="center"
-        android:textColor="@color/colorPrimaryDark"
-        android:hint="03_ruxandra" />
+        android:textColor="@color/colorPrimaryDark" />
 
-    <TextView
+    <EditText
         android:layout_width="match_parent"
+        android:id="@+id/nickname"
         android:layout_height="wrap_content"
         android:layout_margin="6dp"
         android:paddingBottom="8dp"
@@ -36,21 +37,7 @@
         android:gravity="center"
         android:textColor="@color/colorPrimaryDark"
         android:background="@color/color_conversation"
-        android:hint="Ruxandra"
         android:drawableRight="@drawable/edit_crayon"
-        />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="6dp"
-        android:paddingBottom="8dp"
-        android:paddingTop="8dp"
-        android:paddingRight="6dp"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="26sp"
-        android:background="@color/color_conversation"
-        android:hint="Space is not the limit, is the beginning!"
-        android:drawableEnd="@drawable/edit_crayon"
         />
 
     <Button
@@ -62,6 +49,6 @@
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:text="Change picture"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:textColor="@color/color_photobackground" />
 </LinearLayout>

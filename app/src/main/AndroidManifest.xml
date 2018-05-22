@@ -27,7 +27,8 @@
         <activity android:name=".NewConversation" />
         <activity android:name=".ChangePasswd" />
         <activity android:name=".ConversationScreen" />
-        <activity android:name=".ChangePhoto"></activity>
+        <activity android:name=".ChangePhoto" />
+        <activity android:name=".ChangeStatus"></activity>
     </application>
 
 </manifest>

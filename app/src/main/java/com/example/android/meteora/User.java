@@ -4,17 +4,27 @@ import android.widget.ImageView;
 
 import java.util.ArrayList;
 
+
 public class User {
     private static int IDcounter;
-    private int ID;
-    private String userName;
-    private String password;
-    private String nickName;
+
+    public int ID;
+    public String userName;
+    public String password;
+    public String nickName;
+    public String Status;
+    public String Missions;
+
     private int userType;
     private int isActive;
     private ArrayList<Conversation> conversations;
     private int imageResourceID = HAS_NO_IMAGE;
     public static final int HAS_NO_IMAGE = -1;
+
+    public User() {
+        this.conversations = new ArrayList<>();
+    }
+
 
     public User(String userName, String password, int userType) {
         this.userName = userName;

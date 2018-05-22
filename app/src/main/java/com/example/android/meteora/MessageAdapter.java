@@ -22,6 +22,12 @@ public class MessageAdapter extends BaseAdapter {
         this.context = context;
     }
 
+    public void clearAll()
+    {
+        this.messages.clear();
+        notifyDataSetChanged();
+    }
+
     public void add(Message message) {
         this.messages.add(message);
         notifyDataSetChanged(); // to render the list we need to notify

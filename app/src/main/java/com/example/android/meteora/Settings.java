@@ -15,7 +15,7 @@ public class Settings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Change password");
+        actionBar.setTitle("Settings");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         TextView changePassword = (TextView) findViewById(R.id.change_password);
@@ -38,6 +38,18 @@ public class Settings extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent photoIntent = new Intent(Settings.this, ChangePhoto.class);
+                startActivity(photoIntent);
+            }
+        });
+
+        TextView changeStatus = (TextView) findViewById(R.id.change_status);
+
+        // Set a click listener on that View
+        changeStatus.setOnClickListener(new View.OnClickListener() {
+            // The code in this method will be executed when the numbers View is clicked on.
+            @Override
+            public void onClick(View view) {
+                Intent photoIntent = new Intent(Settings.this, ChangeStatus.class);
                 startActivity(photoIntent);
             }
         });

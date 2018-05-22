@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/color_photobackground"
+    android:layout_height="match_parent"
+    tools:context=".ChangeStatus"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:id="@+id/oldstatus"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
+        android:paddingRight="6dp"
+        android:layout_marginTop="50dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="26sp"
+        android:background="@color/color_conversation"
+        android:hint="Space is not the limit, is the beginning!"
+    />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:id="@+id/newstatus"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
+        android:paddingRight="6dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="26sp"
+        android:background="@color/color_conversation"
+        android:hint="Space is not the limit, is the beginning!"
+        android:drawableEnd="@drawable/edit_crayon"
+        />
+
+</LinearLayout>

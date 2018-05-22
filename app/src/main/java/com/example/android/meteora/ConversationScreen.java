@@ -1,8 +1,14 @@
 package com.example.android.meteora;
 
+import android.content.Intent;
+import android.net.MailTo;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
@@ -19,51 +25,108 @@ import java.util.Random;
 
 public class ConversationScreen extends AppCompatActivity implements RoomListener{
 
-    private String channelID = "BYHEbH6WH2Dovl6I";
-    private String roomName = "observable-room";
-    private EditText editText;
-    private Scaledrone scaledrone;
-    private MessageAdapter messageAdapter;
-    private ListView messagesView;
+    public String channelID = "BYHEbH6WH2Dovl6I";
+    public String roomName = "observable-room";
+    public EditText editText;
+
+    public Scaledrone scaledrone;
+
+    public MessageAdapter messageAdapter;
+    public ListView messagesView;
+
+    public static ConversationScreen Activity;
 
 
+    public static int position;
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_conversation_screen);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle(Menu.conversations.get(position).getUser2().getUserName());
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // This is where we write the mesage
         editText = (EditText) findViewById(R.id.editText);
 
         messageAdapter = new MessageAdapter(this);
         messagesView = (ListView) findViewById(R.id.messages_view);
         messagesView.setAdapter(messageAdapter);
-        
+
         MemberData data = new MemberData(getRandomName(), getRandomColor());
 
-        scaledrone = new Scaledrone(channelID, data);
-        scaledrone.connect(new Listener() {
-            @Override
-            public void onOpen() {
-                System.out.println("Scaledrone connection open");
-                // Since the MainActivity itself already implement RoomListener we can pass it as a target
-                scaledrone.subscribe(roomName, ConversationScreen.this);
-            }
+        Activity = this;
 
-            @Override
-            public void onOpenFailure(Exception ex) {
-                System.err.println(ex);
-            }
+        Intent intent = getIntent();
+        position = intent.getIntExtra("position", -1);
 
-            @Override
-            public void onFailure(Exception ex) {
-                System.err.println(ex);
-            }
 
+        System.out.println("Position " + position);
+
+        Button infoButton = (Button) findViewById(R.id.infoButton);
+
+        infoButton.setOnClickListener(new View.OnClickListener() {
+            // The code in this method will be executed when the numbers View is clicked on.
             @Override
-            public void onClosed(String reason) {
-                System.err.println(reason);
+            public void onClick(View view) {
+                Intent intent = new Intent(ConversationScreen.this, InfoIntent.class);
+                intent.putExtra("position", position);
+                startActivity(intent);
             }
         });
+
+
+
+
+        for (SendMessage mes : Menu.conversations.get(position).messages)
+        {
+            boolean mine = (mes.dest == -1);
+
+            MemberData dataActual = new MemberData(Menu.conversations.get(position).getUser2().getNickName(),
+                    "#ffffff");
+
+            messageAdapter.add(new Message(mes.message, dataActual, mine));
+        }
+
+
+//        scaledrone = new Scaledrone(channelID, data);
+//        scaledrone.connect(new Listener() {
+//            @Override
+//            public void onOpen() {
+//                System.out.println("Scaledrone connection open");
+//                // Since the MainActivity itself already implement RoomListener we can pass it as a target
+//                scaledrone.subscribe(roomName, ConversationScreen.this);
+//            }
+//
+//            @Override
+//            public void onOpenFailure(Exception ex) {
+//                System.err.println(ex);
+//            }
+//
+//            @Override
+//            public void onFailure(Exception ex) {
+//                System.err.println(ex);
+//            }
+//
+//            @Override
+//            public void onClosed(String reason) {
+//                System.err.println(reason);
+//            }
+//        });
+
+
+
+
+
     }
 
     // Successfully connected to Scaledrone room
@@ -76,6 +139,24 @@ public class ConversationScreen extends AppCompatActivity implements RoomListene
     @Override
     public void onOpenFailure(Room room, Exception ex) {
         System.err.println(ex);
+    }
+
+
+    public void ReceiveMessage(SendMessage message)
+    {
+        boolean belongsToCurrentUser = (message.dest == -1);
+        MemberData data = new MemberData(Menu.conversations.get(position).getUser2().getNickName(),
+                "#ffffff");
+
+        final Message msg = new Message(message.message, data, belongsToCurrentUser);
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                messageAdapter.add(msg);
+                // scroll the ListView to the last added element
+                messagesView.setSelection(messagesView.getCount() - 1);
+            }
+        });
     }
 
     // Received a message from Scaledrone room
@@ -123,12 +204,23 @@ public class ConversationScreen extends AppCompatActivity implements RoomListene
         return sb.toString().substring(0, 7);
     }
 
-    public void sendMessage(View view) {
+    public void sendMessage(View view)
+    {
         String message = editText.getText().toString();
-        if (message.length() > 0) {
-            scaledrone.publish("observable-room", message);
-            editText.getText().clear();
-        }
+
+
+        MemberData data = new MemberData(getRandomName(), "#ffffff");
+
+        messageAdapter.add(new Message(message, data, true));
+
+        Menu.conversations.get(position).messages.add(new SendMessage(-1, message));
+
+        Login.client.postAction(ConnectionFlag.S_MESSAGE,
+                new SendMessage(Menu.conversations.get(position).getUser2().ID, message));
+
+
+        editText.getText().clear();
+
     }
 }
 class MemberData {

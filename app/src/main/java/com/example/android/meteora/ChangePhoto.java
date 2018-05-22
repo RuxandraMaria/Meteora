@@ -4,10 +4,13 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,6 +25,10 @@ public class ChangePhoto extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_photo);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Change Photo");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         Button buttonLoadImage = (Button)findViewById(R.id.loadimage);
         targetImage = (ImageView)findViewById(R.id.targetimage);
@@ -42,6 +49,23 @@ public class ChangePhoto extends AppCompatActivity {
                 startActivityForResult(chooserIntent, PICK_IMAGE);
             }
         });
+
+        TextView username = (TextView) findViewById(R.id.username);
+        EditText nickname = (EditText) findViewById(R.id.nickname);
+        for(Conversation c : Menu.conversations)
+            if(c.getUser2().ID == Login.MY_ID) {
+                username.setText(c.getUser2().getUserName());
+                nickname.setText(c.getUser2().getNickName());
+            }
+
+        // Set a click listener on that View
+        nickname.setOnClickListener(new View.OnClickListener() {
+            // The code in this method will be executed when the numbers View is clicked on.
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     @Override
@@ -58,6 +82,15 @@ public class ChangePhoto extends AppCompatActivity {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
+        }
+    }
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 }

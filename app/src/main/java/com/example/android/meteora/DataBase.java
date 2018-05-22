@@ -35,10 +35,15 @@ public class DataBase {
     }
 
     public User getWhoIsLoggedNow() {
+        if (isLoggedNow == null)
+        {
+            isLoggedNow = new User();
+        }
         return isLoggedNow;
     }
 
     public void populateDataBase(){
+        users.add(new User("123", "123qwe", 2,  R.drawable.photo));
         users.add(new User("01_alexandru", "mission11", 2,  R.drawable.photo));
         users.add(new User("02_cristina", "mission12", 2,  R.drawable.logonasa));
         users.add(new User("03_ruxandra", "mission13",2));

@@ -2,16 +2,22 @@ package com.example.android.meteora;
 
 import android.text.style.UpdateLayout;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Conversation {
     private User user1, user2;
     private Date ConversationBegin;
 
+    public ArrayList<SendMessage> messages;
+
+
     public Conversation(User user1, User user2) {
         this.user1 = user1;
         this.user2 = user2;
         ConversationBegin = new Date();
+
+        this.messages = new ArrayList<>();
     }
 
     public User getUser1() {
