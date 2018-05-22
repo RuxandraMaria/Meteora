@@ -11,6 +11,16 @@
 
     <TextView
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
+        android:paddingRight="6dp"
+        android:textSize="16sp"
+        android:text="Actual status:"
+        android:textColor="@color/colorPrimaryDark" />
+    <TextView
+        android:layout_width="match_parent"
         android:id="@+id/oldstatus"
         android:layout_height="wrap_content"
         android:layout_margin="6dp"
@@ -24,6 +34,16 @@
         android:hint="Space is not the limit, is the beginning!"
     />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
+        android:paddingRight="6dp"
+        android:textSize="16sp"
+        android:text="New status:"
+        android:textColor="@color/colorPrimaryDark" />
     <EditText
         android:layout_width="match_parent"
         android:id="@+id/newstatus"
@@ -35,8 +55,20 @@
         android:textColor="@color/colorPrimaryDark"
         android:textSize="26sp"
         android:background="@color/color_conversation"
-        android:hint="Space is not the limit, is the beginning!"
+        android:hint="New status"
         android:drawableEnd="@drawable/edit_crayon"
         />
+
+    <Button
+        android:id="@+id/changestatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="#283593"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="Change status"
+        android:layout_marginTop="40dp"
+        android:textColor="@color/color_photobackground" />
 
 </LinearLayout>

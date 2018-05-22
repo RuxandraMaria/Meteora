@@ -47,8 +47,8 @@ public class Menu extends AppCompatActivity implements SearchView.OnQueryTextLis
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
 
-                Snackbar snackbar = Snackbar.make(view, "ITEM CLICKED " + position, Snackbar.LENGTH_LONG);
-                snackbar.show();
+                //Snackbar snackbar = Snackbar.make(view, "ITEM CLICKED " + position, Snackbar.LENGTH_LONG);
+                //snackbar.show();
 
                 Intent intent = new Intent(Menu.this, ConversationScreen.class);
                 intent.putExtra("position", position);
@@ -88,10 +88,6 @@ public class Menu extends AppCompatActivity implements SearchView.OnQueryTextLis
                 break;
             case R.id.help:
                 intent = new Intent(Menu.this, Help.class);
-                startActivity(intent);
-                break;
-            case R.id.new_conv:
-                intent = new Intent(Menu.this, NewConversation.class);
                 startActivity(intent);
                 break;
             case R.id.logout:
