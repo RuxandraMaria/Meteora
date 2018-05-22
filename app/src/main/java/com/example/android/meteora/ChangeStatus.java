@@ -30,7 +30,7 @@ public class ChangeStatus extends AppCompatActivity {
                oldStatus.setText(c.getUser2().Status);
             }
 
-        newStatus.setOnClickListener(new View.OnClickListener() {
+        /*newStatus.setOnClickListener(new View.OnClickListener() {
             // The code in this method will be executed when the numbers View is clicked on.
             @Override
             public void onClick(View view) {
@@ -39,8 +39,8 @@ public class ChangeStatus extends AppCompatActivity {
                         c.getUser2().Status = newStatus.getText().toString();
                     }
             }
-        });
-        newstatus = newStatus.getText().toString();
+        });*/
+
         Button buttonLoadStatus = (Button)findViewById(R.id.changestatus);
 
         buttonLoadStatus.setOnClickListener(new Button.OnClickListener() {
@@ -49,7 +49,8 @@ public class ChangeStatus extends AppCompatActivity {
             public void onClick(View arg0) {
                 for(Conversation c : Menu.conversations)
                     if(c.getUser2().ID == Login.MY_ID) {
-                        oldStatus.setText(newstatus);
+                        oldStatus.setText(newStatus.getText().toString());
+                        c.getUser2().Status = newStatus.getText().toString();
                     }
             }
         });
